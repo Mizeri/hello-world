@@ -1,0 +1,20 @@
+f = open('test.txt', 'r')  # 'r' read, 'w' write, 'r+' read and write, 'a' append
+f.mode # read or write
+f.close # simply close the file
+
+with open('test.txt', 'r') as f: # Context manager is the best practice and it will close the file automatically when this block ends
+    f.read(100)  # return file contents (the next 100 characters, default from the beginning)
+    f.readlines() # return a list, each line of the file as a element
+    f.readline() # return next line of the file
+    for line in f:  # it will not read the whole file into memory at once
+        print(line, end='')
+f.closed # True if f is closed
+
+
+# to read a big file
+with open('t.text', 'r') as f:
+    size_to_read = 100
+    file_contents = f.read(size_to_read)
+    while file_contents > 0:
+        print(file_contents, end='')
+        file_contents = f.read(size_to_read)
